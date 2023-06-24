@@ -27,7 +27,7 @@ public class ConnectionServiceImpl implements ConnectionService {
             throw new Exception("connected");
         }
         //if same country
-        if(user.getOriginalcountry().getCountryName().name().equalsIgnoreCase(countryName)){
+        if(user.getOriginalCountry().getCountryName().name().equalsIgnoreCase(countryName)){
             return user;
         }
 
@@ -107,10 +107,10 @@ public class ConnectionServiceImpl implements ConnectionService {
             }
         }
         else{
-            currenctCountryOfReceiver = receiver.getOriginalcountry().getCountryName().name(); //original country
+            currenctCountryOfReceiver = receiver.getOriginalCountry().getCountryName().name(); //original country
         }
 
-        if(sender.getOriginalcountry().getCountryName().name().equals(currenctCountryOfReceiver)) return sender;
+        if(sender.getOriginalCountry().getCountryName().name().equals(currenctCountryOfReceiver)) return sender;
 
         try {
             sender = connect(senderId,currenctCountryOfReceiver);

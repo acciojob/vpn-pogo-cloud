@@ -18,15 +18,20 @@ public class User {
 
     private String maskedIp;
 
-    private Boolean connected;
+    public User(int id, String username, String password, String originalIp, String maskedIp, Boolean connected, List<Connection> connectionList, Country originalCountry, List<ServiceProvider> serviceProviderList) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.originalIp = originalIp;
+        this.maskedIp = maskedIp;
+        this.connected = connected;
+        this.connectionList = connectionList;
+        OriginalCountry = originalCountry;
+        this.serviceProviderList = serviceProviderList;
+    }
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    private List<Connection> connectionList=new ArrayList<>();
-    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
-    private Country Originalcountry;
-
-    @ManyToMany
-    private List<ServiceProvider>serviceProviderList = new ArrayList<>();
+    public User() {
+    }
 
     public int getId() {
         return id;
@@ -84,12 +89,12 @@ public class User {
         this.connectionList = connectionList;
     }
 
-    public Country getOriginalcountry() {
-        return Originalcountry;
+    public Country getOriginalCountry() {
+        return OriginalCountry;
     }
 
-    public void setOriginalcountry(Country originalcountry) {
-        Originalcountry = originalcountry;
+    public void setOriginalCountry(Country originalCountry) {
+        OriginalCountry = originalCountry;
     }
 
     public List<ServiceProvider> getServiceProviderList() {
@@ -100,18 +105,15 @@ public class User {
         this.serviceProviderList = serviceProviderList;
     }
 
-    public User(int id, String username, String password, String originalIp, String maskedIp, Boolean connected, List<Connection> connectionList, Country originalcountry, List<ServiceProvider> serviceProviderList) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.originalIp = originalIp;
-        this.maskedIp = maskedIp;
-        this.connected = connected;
-        this.connectionList = connectionList;
-        Originalcountry = originalcountry;
-        this.serviceProviderList = serviceProviderList;
-    }
+    private Boolean connected;
 
-    public User() {
-    }
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Connection> connectionList=new ArrayList<>();
+    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+    private Country OriginalCountry;
+
+    @ManyToMany
+    private List<ServiceProvider>serviceProviderList = new ArrayList<>();
+
+
 }
